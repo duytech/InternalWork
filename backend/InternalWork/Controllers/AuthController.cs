@@ -25,7 +25,7 @@ namespace InternalWork.Controllers
             this.authSetting = authSetting.Value;
         }
 
-        [HttpPost]
+        [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest loginRequest)
         {
             var user = await this.userManager.FindByNameAsync(loginRequest.UserName);
@@ -38,6 +38,24 @@ namespace InternalWork.Controllers
             }
 
             return BadRequest();
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterRequest registerRequest)
+        {
+            var identityUser = new AppIdentityUser
+            {
+                UserName = registerRequest.UserName,
+                Email = registerRequest.Email
+            };
+
+            var user = await this.userManager.CreateAsync(identityUser, registerRequest.Password);
+            if (user.Succeeded)
+            {
+                return Ok();
+            }
+
+            return BadRequest(user.Errors);
         }
     }
 }

@@ -30,6 +30,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         {
             ValidateIssuer = true,
             ValidateAudience = false,
+            ClockSkew = TimeSpan.Zero,
             //ValidAudience = builder.Configuration["Jwt:Audience"],
             //ValidIssuer = builder.Configuration["Jwt:Issuer"],
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["AuthSetting:Secret"]))
@@ -43,9 +44,12 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(builder.Configuration["DbSetting:ConnectionString"], serverVersion);
 });
 
-builder.Services.AddDefaultIdentity<AppIdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-        .AddEntityFrameworkStores<AppDbContext>()
-        .AddDefaultTokenProviders();
+builder.Services.AddDefaultIdentity<AppIdentityUser>(options => 
+{
+    options.SignIn.RequireConfirmedAccount = true;
+})
+.AddEntityFrameworkStores<AppDbContext>()
+.AddDefaultTokenProviders();
 
 // configure DI for application services
 builder.Services.AddScoped<IAuthService, AuthService>();
