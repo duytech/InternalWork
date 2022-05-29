@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternalWork.Auth", "Intern
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternalWork.Auth.Data", "..\InternalWork.Service\InternalWork.Auth.Data.csproj", "{177196AB-A818-4872-8CBF-F34296B6E731}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternalWork.Services", "..\InternalWork.Services\InternalWork.Services.csproj", "{6AC29FB9-9866-44CF-9B8E-768FBD3D256B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternalWork.Auth.Services", "..\InternalWork.Services\InternalWork.Auth.Services.csproj", "{6AC29FB9-9866-44CF-9B8E-768FBD3D256B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternalWork.Auth.Common", "..\InternalWork.Auth.Common\InternalWork.Auth.Common.csproj", "{77CFABCD-0667-4DF1-B707-1688647C9D24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternalWork.Auth.Common", "..\InternalWork.Auth.Common\InternalWork.Auth.Common.csproj", "{77CFABCD-0667-4DF1-B707-1688647C9D24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

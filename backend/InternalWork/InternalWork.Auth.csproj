@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\InternalWork.Services\InternalWork.Services.csproj" />
+    <ProjectReference Include="..\InternalWork.Services\InternalWork.Auth.Services.csproj" />
   </ItemGroup>
 
 </Project>

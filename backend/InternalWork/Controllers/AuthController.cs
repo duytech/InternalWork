@@ -1,5 +1,6 @@
 ﻿using InternalWork.Auth;
 using InternalWork.Auth.Common.Models;
+using InternalWork.Auth.Data.Entities;
 using InternalWork.Auth.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,12 +12,12 @@ namespace InternalWork.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly SignInManager<IdentityUser<Guid>> signInManager;
-        private readonly UserManager<IdentityUser<Guid>> userManager;
+        private readonly SignInManager<AppIdentityUser> signInManager;
+        private readonly UserManager<AppIdentityUser> userManager;
         private readonly AuthSetting authSetting;
 
-        public AuthController(SignInManager<IdentityUser<Guid>> signInManager, 
-            UserManager<IdentityUser<Guid>> userManager,
+        public AuthController(SignInManager<AppIdentityUser> signInManager, 
+            UserManager<AppIdentityUser> userManager,
             IOptions<AuthSetting> authSetting)
         {
             this.signInManager = signInManager;

@@ -1,4 +1,5 @@
 using InternalWork.Auth.Common.Models;
+using InternalWork.Auth.Data.Entities;
 using InternalWork.Service;
 using InternalWork.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -42,7 +43,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(builder.Configuration["DbSetting:ConnectionString"], serverVersion);
 });
 
-builder.Services.AddDefaultIdentity<IdentityUser<Guid>>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<AppIdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
         .AddEntityFrameworkStores<AppDbContext>()
         .AddDefaultTokenProviders();
 

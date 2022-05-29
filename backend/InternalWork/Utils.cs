@@ -1,4 +1,5 @@
 ﻿using InternalWork.Auth.Common.Models;
+using InternalWork.Auth.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -13,7 +14,7 @@ namespace InternalWork.Auth
 {
     public static class Utils
     {
-        public static string GenerateJwtToken(IdentityUser<Guid> user, AuthSetting authSetting)
+        public static string GenerateJwtToken(AppIdentityUser user, AuthSetting authSetting)
         {
             // generate token that is valid for 7 days
             var tokenHandler = new JwtSecurityTokenHandler();
