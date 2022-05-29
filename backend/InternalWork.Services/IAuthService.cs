@@ -8,6 +8,6 @@ namespace InternalWork.Services
 {
     public interface IAuthService
     {
-        string 
+        
     }
 }
