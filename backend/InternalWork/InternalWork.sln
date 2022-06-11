@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternalWork.Auth.Services"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternalWork.Auth.Common", "..\InternalWork.Auth.Common\InternalWork.Auth.Common.csproj", "{77CFABCD-0667-4DF1-B707-1688647C9D24}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternalWork.IntegrationTests", "..\InternalWork.IntegrationTests\InternalWork.IntegrationTests.csproj", "{5E0243D4-3D3A-4980-9BFE-DFDCD45687B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{77CFABCD-0667-4DF1-B707-1688647C9D24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77CFABCD-0667-4DF1-B707-1688647C9D24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77CFABCD-0667-4DF1-B707-1688647C9D24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E0243D4-3D3A-4980-9BFE-DFDCD45687B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E0243D4-3D3A-4980-9BFE-DFDCD45687B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E0243D4-3D3A-4980-9BFE-DFDCD45687B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E0243D4-3D3A-4980-9BFE-DFDCD45687B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
