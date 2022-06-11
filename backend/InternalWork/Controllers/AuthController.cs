@@ -45,7 +45,7 @@ namespace InternalWork.Controllers
         {
             var identityUser = new AppIdentityUser
             {
-                UserName = registerRequest.UserName,
+                UserName = registerRequest.Email,
                 Email = registerRequest.Email
             };
 

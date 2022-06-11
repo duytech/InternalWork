@@ -1,5 +1,6 @@
 using InternalWork.Auth.Common.Models;
 using InternalWork.Auth.Data.Entities;
+using InternalWork.Auth.Data.Utils;
 using InternalWork.Service;
 using InternalWork.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -44,7 +45,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(builder.Configuration["DbSetting:ConnectionString"], serverVersion);
 });
 
-builder.Services.AddDefaultIdentity<AppIdentityUser>(options => 
+builder.Services.AddIdentity<AppIdentityUser, IdentityRole<Guid>>(options => 
 {
     options.SignIn.RequireConfirmedAccount = true;
 })
@@ -58,10 +59,46 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    using (var context = scope.ServiceProvider.GetService<AppDbContext>())
+    var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    context.Database.Migrate();
+
+    // create user roles
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
+
+    string[] roleNames = AppRole.GetArray();
+
+    foreach (string roleName in roleNames)
     {
-        context.Database.Migrate();
+        bool roleExist = roleManager.RoleExistsAsync(roleName).GetAwaiter().GetResult();
+
+        if (!roleExist)
+        {
+            Console.WriteLine($"### creating role {roleName}");
+            roleManager.CreateAsync(new IdentityRole<Guid>(roleName)).GetAwaiter().GetResult();
+        }
     }
+
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<AppIdentityUser>>();
+    var admin = userManager.FindByEmailAsync("admin@company.com").GetAwaiter().GetResult();
+    if (admin is null)
+    {
+        var adminIdentity = new AppIdentityUser
+        {
+            Email = "admin@company.com",
+            UserName = "admin@company.com",
+            EmailConfirmed = true
+        };
+        var result = userManager.CreateAsync(adminIdentity, "l6kxet@A").GetAwaiter().GetResult();
+
+        if (result.Succeeded)
+        {
+            userManager.AddToRoleAsync(adminIdentity, AppRole.Admin);
+        }
+    }
+
+    roleManager.Dispose();
+    userManager.Dispose();
+    context.Dispose();
 }
 
 // Configure the HTTP request pipeline.
