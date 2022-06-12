@@ -1,6 +1,3 @@
-# https://stackoverflow.com/questions/70499749/issue-in-docker-compose-with-volume-undefined
-# https://code-maze.com/mysql-aspnetcore-docker-compose/
-
 version: '3.4'
 
 services:

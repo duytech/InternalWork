@@ -1,4 +1,8 @@
-﻿- show all running container to get access url
+﻿# https://stackoverflow.com/questions/70499749/issue-in-docker-compose-with-volume-undefined
+# https://code-maze.com/mysql-aspnetcore-docker-compose/
+# https://stackoverflow.com/questions/64646218/dotnet-core-docker-environment-variables
+
+- show all running container to get access url
 -- docker ps
 - show container detail
 -- docker inspect <container_id>
