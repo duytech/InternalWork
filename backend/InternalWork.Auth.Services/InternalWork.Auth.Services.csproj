@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\InternalWork.Service\InternalWork.Auth.Data.csproj" />
+    <ProjectReference Include="..\InternalWork.Auth.Data\InternalWork.Auth.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>

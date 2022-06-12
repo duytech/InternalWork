@@ -4,6 +4,10 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>.</DockerfileContext>
+    <DockerComposeProjectPath>docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>a63b2c6b-6f72-4289-b562-12e21cb47eb3</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\InternalWork.Services\InternalWork.Auth.Services.csproj" />
+    <ProjectReference Include="..\InternalWork.Auth.Services\InternalWork.Auth.Services.csproj" />
   </ItemGroup>
 
 </Project>
