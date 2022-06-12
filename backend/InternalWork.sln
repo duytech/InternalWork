@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32516.85
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternalWork.Auth", ".\InternalWork.Auth.WebAPI\InternalWork.Auth.csproj", "{5FB758FC-202B-4F2D-BF8C-93EBD16DA510}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternalWork.Auth", "InternalWork.Auth.WebAPI\InternalWork.Auth.csproj", "{5FB758FC-202B-4F2D-BF8C-93EBD16DA510}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternalWork.Auth.Data", ".\InternalWork.Auth.Data\InternalWork.Auth.Data.csproj", "{177196AB-A818-4872-8CBF-F34296B6E731}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternalWork.Auth.Data", "InternalWork.Auth.Data\InternalWork.Auth.Data.csproj", "{177196AB-A818-4872-8CBF-F34296B6E731}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternalWork.Auth.Services", ".\InternalWork.Auth.Services\InternalWork.Auth.Services.csproj", "{6AC29FB9-9866-44CF-9B8E-768FBD3D256B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternalWork.Auth.Services", "InternalWork.Auth.Services\InternalWork.Auth.Services.csproj", "{6AC29FB9-9866-44CF-9B8E-768FBD3D256B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternalWork.Auth.Common", ".\InternalWork.Auth.Common\InternalWork.Auth.Common.csproj", "{77CFABCD-0667-4DF1-B707-1688647C9D24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternalWork.Auth.Common", "InternalWork.Auth.Common\InternalWork.Auth.Common.csproj", "{77CFABCD-0667-4DF1-B707-1688647C9D24}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternalWork.IntegrationTests", ".\InternalWork.Auth.IntegrationTests\InternalWork.IntegrationTests.csproj", "{5E0243D4-3D3A-4980-9BFE-DFDCD45687B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternalWork.IntegrationTests", "InternalWork.Auth.IntegrationTests\InternalWork.IntegrationTests.csproj", "{5E0243D4-3D3A-4980-9BFE-DFDCD45687B2}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{05CAB3EB-FCC8-443B-88AA-696FC9F9F344}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{5E0243D4-3D3A-4980-9BFE-DFDCD45687B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E0243D4-3D3A-4980-9BFE-DFDCD45687B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E0243D4-3D3A-4980-9BFE-DFDCD45687B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05CAB3EB-FCC8-443B-88AA-696FC9F9F344}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05CAB3EB-FCC8-443B-88AA-696FC9F9F344}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05CAB3EB-FCC8-443B-88AA-696FC9F9F344}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05CAB3EB-FCC8-443B-88AA-696FC9F9F344}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

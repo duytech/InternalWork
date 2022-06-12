@@ -1,0 +1,4 @@
+﻿- show all running container to get access url
+-- docker ps
+- show container detail
+-- docker inspect <container_id>
