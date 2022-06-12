@@ -18,7 +18,7 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore ./backend/InternalWork/InternalWork.sln
+      run: dotnet restore ./backend/InternalWork.sln
     - name: Build
-      run: dotnet build ./backend/InternalWork/InternalWork.sln --configuration Release
+      run: dotnet build ./backend/InternalWork.sln --configuration Release
       
