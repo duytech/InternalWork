@@ -1,4 +1,5 @@
 using InternalWork.Auth.Common.Models;
+using InternalWork.Auth.Common.SettingModels;
 using InternalWork.Auth.Data.Entities;
 using InternalWork.Auth.Data.Utils;
 using InternalWork.Service;
@@ -70,9 +71,7 @@ using (var scope = app.Services.CreateScope())
 
     // create user roles
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
-
     string[] roleNames = AppRole.GetArray();
-
     foreach (string roleName in roleNames)
     {
         bool roleExist = roleManager.RoleExistsAsync(roleName).GetAwaiter().GetResult();
@@ -85,20 +84,21 @@ using (var scope = app.Services.CreateScope())
     }
 
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<AppIdentityUser>>();
-    var admin = userManager.FindByEmailAsync("admin@company.com").GetAwaiter().GetResult();
-    if (admin is null)
+    var adminData = new SampleDataSetting();
+    app.Configuration.GetSection("AdminData").Bind(adminData);
+    if (adminData.Users != null && adminData.Users.Length > 0)
     {
-        var adminIdentity = new AppIdentityUser
-        {
-            Email = "admin@company.com",
-            UserName = "admin@company.com",
-            EmailConfirmed = true
-        };
-        var result = userManager.CreateAsync(adminIdentity, "l6kxet@A").GetAwaiter().GetResult();
+        var adminDataAccount = adminData.Users.First();
+        CreateUser(userManager, adminDataAccount);
+    }
 
-        if (result.Succeeded)
+    var sampleData = new SampleDataSetting();
+    app.Configuration.GetSection("SampleData").Bind(sampleData);
+    if (sampleData.Users != null && sampleData.Users.Length > 0)
+    {
+        foreach(var sample in sampleData.Users)
         {
-            userManager.AddToRoleAsync(adminIdentity, AppRole.Admin);
+            CreateUser(userManager, sample);
         }
     }
 
@@ -121,3 +121,23 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+void CreateUser(UserManager<AppIdentityUser> userManager, UserSetting sample)
+{
+    var user = userManager.FindByEmailAsync(sample.Email).Result;
+    if (user is null)
+    {
+        var identityUser = new AppIdentityUser
+        {
+            Email = sample.Email,
+            UserName = sample.Email,
+            EmailConfirmed = true
+        };
+        var result = userManager.CreateAsync(identityUser, sample.Password).Result;
+
+        if (result.Succeeded)
+        {
+            userManager.AddToRoleAsync(identityUser, AppRole.Member).Wait();
+        }
+    }
+}
