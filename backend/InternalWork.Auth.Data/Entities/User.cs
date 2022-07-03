@@ -12,7 +12,9 @@ namespace InternalWork.Auth.Data.Entities
 
         public Guid IdentityId { get; set; }
 
-        public int MyProperty { get; set; }
+        public string Address { get; set; }
+
+        public bool Active { get; set; }
 
         public AppIdentityUser AppIdentityUser { get; set; }
     }

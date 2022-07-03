@@ -9,12 +9,12 @@ namespace InternalWork.Auth.Data.Utils
     public static class AppRole
     {
         public const string Admin = "Admin";
-        public const string Operator = "Operator";
+        public const string HumanResource = "HumanResource";
         public const string Member = "Member";
 
         public static string[] GetArray()
         {
-            return new string[] { Admin, Member, Operator };
+            return new string[] { Admin, Member, HumanResource };
         }
     }
 }
