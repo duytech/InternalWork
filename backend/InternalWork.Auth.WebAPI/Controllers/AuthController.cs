@@ -29,6 +29,11 @@ namespace InternalWork.Controllers
         public async Task<IActionResult> Login([FromBody] LoginRequest loginRequest)
         {
             var user = await this.userManager.FindByNameAsync(loginRequest.UserName);
+            if (user is null)
+            {
+                return BadRequest("Invalid user name or password");
+            }
+
             var isValid = await this.signInManager.CheckPasswordSignInAsync(user, loginRequest.Password, false);
             if (isValid.Succeeded)
             {
@@ -37,7 +42,7 @@ namespace InternalWork.Controllers
                 return Ok(new { token });
             }
 
-            return BadRequest();
+            return BadRequest("Invalid user name or password");
         }
 
         [HttpPost("register")]
