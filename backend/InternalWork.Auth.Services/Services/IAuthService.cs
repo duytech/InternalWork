@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InternalWork.Services
+namespace InternalWork.Auth.Services.Services
 {
     public interface IAuthService
     {
-        
+
     }
 }

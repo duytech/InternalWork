@@ -6,7 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Options;
 
-namespace InternalWork.Services
+namespace InternalWork.Auth.Services.Services
 {
     public class AuthService : IAuthService
     {
@@ -21,7 +21,7 @@ namespace InternalWork.Services
         {
             // generate token that is valid for 7 days
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(this.authSetting.Secret);
+            var key = Encoding.ASCII.GetBytes(authSetting.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),

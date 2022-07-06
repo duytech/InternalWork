@@ -2,8 +2,8 @@ using InternalWork.Auth.Common.Models;
 using InternalWork.Auth.Common.SettingModels;
 using InternalWork.Auth.Data.Entities;
 using InternalWork.Auth.Data.Utils;
+using InternalWork.Auth.Services.Services;
 using InternalWork.Service;
-using InternalWork.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -61,6 +61,7 @@ builder.Services.AddIdentity<AppIdentityUser, IdentityRole<Guid>>(options =>
 
 // configure DI for application services
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();
 

@@ -7,6 +7,8 @@ namespace InternalWork.Service
 {
     public class AppDbContext : IdentityDbContext<IdentityUser<Guid>, IdentityRole<Guid>, Guid>
     {
+        public virtual DbSet<User> UserInfos { get; set; }
+
         public AppDbContext() { }
 
         public AppDbContext(DbContextOptions<AppDbContext> options)

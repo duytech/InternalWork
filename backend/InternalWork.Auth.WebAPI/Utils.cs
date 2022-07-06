@@ -28,5 +28,22 @@ namespace InternalWork.Auth
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
         }
+
+        public static Guid GetUserIdFromToken(ClaimsPrincipal User)
+        {
+            Claim userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                throw new UnauthorizedAccessException("Cannot find user id in token");
+            }
+
+            bool isParsed = Guid.TryParse(userIdClaim.Value, out Guid userId);
+            if (!isParsed)
+            {
+                throw new UnauthorizedAccessException("Cannot find user id in token");
+            }
+
+            return userId;
+        }
     }
 }
