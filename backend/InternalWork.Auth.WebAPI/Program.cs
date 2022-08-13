@@ -2,6 +2,7 @@ using InternalWork.Auth.Common.Models;
 using InternalWork.Auth.Common.SettingModels;
 using InternalWork.Auth.Data.Entities;
 using InternalWork.Auth.Data.Utils;
+using InternalWork.Auth.Helpers;
 using InternalWork.Auth.Services.Services;
 using InternalWork.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -131,6 +132,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.MapControllers();
 

@@ -1,4 +1,5 @@
-﻿using InternalWork.Auth.Services.Models;
+﻿using InternalWork.Auth.Data.Entities;
+using InternalWork.Auth.Services.Models;
 using InternalWork.Service;
 using Microsoft.EntityFrameworkCore;
 using System;
