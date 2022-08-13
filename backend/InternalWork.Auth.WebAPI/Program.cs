@@ -5,6 +5,7 @@ using InternalWork.Auth.Data.Utils;
 using InternalWork.Auth.Services.Services;
 using InternalWork.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -29,14 +30,17 @@ builder.Configuration
 builder.Services.Configure<AuthSetting>(builder.Configuration.GetSection("AuthSetting"));
 
 // configure authentication by jwt token
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+builder.Services.AddAuthentication(options => {
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
     .AddJwtBearer(options =>
     {
         options.RequireHttpsMetadata = false;
         options.SaveToken = true;
         options.TokenValidationParameters = new TokenValidationParameters()
         {
-            ValidateIssuer = true,
+            ValidateIssuer = false,
             ValidateAudience = false,
             ClockSkew = TimeSpan.Zero,
             //ValidAudience = builder.Configuration["Jwt:Audience"],
@@ -44,6 +48,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["AuthSetting:Secret"]))
         };
     });
+builder.Services.AddAuthorization(option =>
+{
+    var defaultAuthorizationPolicyBuilder = new AuthorizationPolicyBuilder(
+        JwtBearerDefaults.AuthenticationScheme);
+    defaultAuthorizationPolicyBuilder =
+        defaultAuthorizationPolicyBuilder.RequireAuthenticatedUser();
+    option.DefaultPolicy = defaultAuthorizationPolicyBuilder.Build();
+});
 
 // configure mysql database context connection setting
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 20));
@@ -117,6 +129,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
